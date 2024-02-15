@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FaceMaker</string>
+    
+    <string-array name="hairStyles" >
+        <item>None</item>
+        <item>Buzz</item>
+        <item>Middle Part</item>a
+        <item>Mullet</item>
+    </string-array>
+</resources>
