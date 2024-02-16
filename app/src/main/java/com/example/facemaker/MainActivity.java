@@ -12,10 +12,14 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    // Declare SeekBars and TextViews for UI components
     SeekBar seekBar;
     TextView textView;
     SeekBar seekBar2;
@@ -29,13 +33,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // Initialize spinner for selecting hairstyle
         Spinner spinner = findViewById(R.id.spinner_HairStyle);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.hairStyles, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // Display a toast message when a hairstyle is selected
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(MainActivity.this, "Selected Item: " + item, Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        // Populate spinner with hairstyle options
+        ArrayList<String> HairTypes = new ArrayList<>();
+        HairTypes.add("None");
+        HairTypes.add("Buzz");
+        HairTypes.add("Middle Part");
+        HairTypes.add("Mullet");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, HairTypes);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        spinner.setAdapter(adapter);
+
+
+        // Initialize seek bars and text views for controlling various parameters
         seekBar = findViewById(R.id.seekBar);
         textView = (TextView) findViewById(R.id.textView);
 
@@ -45,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         seekBar3 = findViewById(R.id.seekBar3);
         textView3 = (TextView) findViewById(R.id.textView6);
 
-
+        // Set up listeners for seek bars to update associated text views
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -98,8 +123,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

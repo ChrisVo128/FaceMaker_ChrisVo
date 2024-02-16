@@ -20,6 +20,7 @@ public class Face {
     public void randomize() {
         Random random = new Random();
 
+        // Generate random values for skin color, eye color, hair color, and hair style
         skinColor = random.nextInt(256);
 
         eyeColor = random.nextInt(256);
