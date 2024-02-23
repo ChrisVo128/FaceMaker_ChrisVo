@@ -16,11 +16,14 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+
 public class ExampleInstrumentedTest {
+    Face test;
     @Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.facemaker", appContext.getPackageName());
+        Face face;
     }
 }
